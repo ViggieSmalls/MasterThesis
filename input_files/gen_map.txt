@@ -1,0 +1,25 @@
+=== simulation ===
+
+generate_particle_maps = yes
+log_file = "gen_map.log"
+rand_seed = 0
+
+=== particle proteasome ===
+
+source = pdb
+pdb_file_in               = 3j9i.pdb
+add_hydrogen = no
+voxel_size = 0.1
+use_imag_pot = no
+famp = 0.1
+map_file_re_out = "filt_0.000.mrc"
+
+=== electronbeam ===
+
+acc_voltage = 300
+energy_spread = 0
+gen_dose = yes
+total_dose = 3900
+dose_sd = 0
+
+

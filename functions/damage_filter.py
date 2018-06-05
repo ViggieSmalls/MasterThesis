@@ -1,4 +1,8 @@
 import numpy as np
+import mrcfile
+import matplotlib.pyplot as plt
+import pandas as pd
+
 
 def frequencies(array):
     """
