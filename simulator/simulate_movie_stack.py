@@ -321,11 +321,6 @@ def main(outp_dir, angles_star, n_frames,
 if __name__ == '__main__':
     import argparse
 
-    angles_star_file = "/fs/home/movileanu/pool/DataSimulation/simulation_tests/ps_contrast/004/real/run_it025_data.star"
-    flat_noise = "/fs/fs04/lv01/home/b_baumei/movileanu/pool/Templates/TEM-Simulator/flat_noise.mrc"
-    single_coordinate = "/fs/fs04/lv01/home/b_baumei/movileanu/pool/Templates/TEM-Simulator/single_coordinate.txt"
-    # angles_star_file = "/home/victor/MasterThesis/4home/run_it025_data.star"
-
     parser = argparse.ArgumentParser(description='Create TEM-Simulator input files.')
     parser.add_argument('-o', '--output_dir', type=str, default=os.path.abspath(os.curdir),
                         help='Output directory for the input files')
