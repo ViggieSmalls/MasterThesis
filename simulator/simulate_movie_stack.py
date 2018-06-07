@@ -204,20 +204,29 @@ def main(outp_dir, angles_star, n_frames,
     if input('Do you wish to proceed with these values?\n') in ('y', 'yes'):
         print('Continuing...')
 
+        # read content of the input star file
         ptcls_star_content = relion_star_file_to_DataFrame(star_file)
+        # create an empty DataFrame to store coordinated of particles and details of the simulated micrographs
+        output_particles_df = pd.DataFrame()
+
+
         dose_array = np.append(np.array(0), np.cumsum(np.repeat(dose_per_frame, n_frames - 1)))
 
         if max < 0:
             micrograph_names = ptcls_star_content['_rlnMicrographName'].unique()
-        elif max >= 1:
+        else:
             micrograph_names = ptcls_star_content['_rlnMicrographName'].unique()[:max]
         for micrograph in micrograph_names:
             basename = os.path.splitext(os.path.basename(micrograph))[0]
             OUTPUT_DIR = os.path.join(BASE_DIR, basename)
             os.makedirs(OUTPUT_DIR, exist_ok=True)
 
+            # select all rows and columns with this micrograph name
             micrograph_df = ptcls_star_content.loc[ptcls_star_content['_rlnMicrographName'] == micrograph]
+            # change the micrograph name to match the future location of the simulated micrographs
+            micrograph_df['_rlnMicrographName'] = os.path.join(BASE_DIR, basename + '.mrc')
 
+            # determine values for the simulation from the star file
             defocus = ( float(micrograph_df['_rlnDefocusU'].unique()) + float(micrograph_df['_rlnDefocusV'].unique()) ) / 2e4  # µm
             if '_rlnPhaseShift' in micrograph_df.columns:
                 phase_shift = float(micrograph_df['_rlnPhaseShift'].unique())
@@ -226,8 +235,7 @@ def main(outp_dir, angles_star, n_frames,
                 phase_shift = 0
             magnification = float(micrograph_df['_rlnMagnification'].unique())
             det_pixel_size = float(micrograph_df['_rlnDetectorPixelSize'].unique())
-
-            pixel_size = det_pixel_size / magnification * 10000  # A/pix
+            pixel_size_image = det_pixel_size / magnification * 10000  # A/pix
 
             if simulate_drift:
                 errors = gen_geometry_errors(n_frames)
@@ -237,8 +245,8 @@ def main(outp_dir, angles_star, n_frames,
                 errors = None
 
             df = pd.DataFrame()
-            df['x'] = ( micrograph_df['_rlnCoordinateX'] - det_pix_x // 2 ) * pixel_size / 10
-            df['y'] = ( micrograph_df['_rlnCoordinateY'] - det_pix_y // 2 ) * pixel_size / 10
+            df['x'] = (micrograph_df['_rlnCoordinateX'] - det_pix_x // 2) * pixel_size_image / 10
+            df['y'] = (micrograph_df['_rlnCoordinateY'] - det_pix_y // 2) * pixel_size_image / 10
             df['z'] = 0
             df['psi']   = -micrograph_df['_rlnAnglePsi'].astype(float)
             df['theta'] = -micrograph_df['_rlnAngleTilt'].astype(float)
@@ -247,8 +255,10 @@ def main(outp_dir, angles_star, n_frames,
             if simulate_drift:
                 fmref = n_frames // 2  # reference frame for motioncor is by default the middle frame
                 error_x, error_y = errors[fmref]  # nm
-                ptcls_star_content.loc[ptcls_star_content['_rlnMicrographName'] == micrograph, ['_rlnOriginX']] = - error_x * 10 / pixel_size
-                ptcls_star_content.loc[ptcls_star_content['_rlnMicrographName'] == micrograph, ['_rlnOriginY']] = - error_y * 10 / pixel_size
+                micrograph_df['_rlnOriginX'] = - error_x * 10 / pixel_size_image
+                micrograph_df['_rlnOriginY'] = - error_y * 10 / pixel_size_image
+
+            output_particles_df = output_particles_df.append(micrograph_df)
 
             coordinates_file = os.path.join(OUTPUT_DIR, "coordinates.txt")
             write_temsim_coordinates(df, coordinates_file)
@@ -313,15 +323,20 @@ def main(outp_dir, angles_star, n_frames,
                     with open(error_file, "w") as f:
                         f.write(error_file_template.substitute(x=errors[n][0], y=errors[n][1]))
 
-
-        pandas_DataFrame_to_relion_star_file(ptcls_star_content, star_file)
+        output_star_file = os.path.join(BASE_DIR, 'particles.star')
+        # as long as a file with this name exists, ask for a new file name
+        while os.path.isfile(output_star_file):
+            new_name = input('A file with the name "{}" already exists in the output folder. '
+                             'Enter a new name:\n'.format(os.path.basename(output_star_file)))
+            output_star_file = os.path.join(BASE_DIR, new_name)
+        pandas_DataFrame_to_relion_star_file(output_particles_df, output_star_file)
 
 
 
 if __name__ == '__main__':
     import argparse
 
-    parser = argparse.ArgumentParser(description='Create TEM-Simulator input files.')
+    parser = argparse.ArgumentParser(description='Create TEM-Simulator input files from a relion _data.star file.')
     parser.add_argument('-o', '--output_dir', type=str, default=os.path.abspath(os.curdir),
                         help='Output directory for the input files')
     parser.add_argument('--angles', type=str, default=None,
