@@ -6,6 +6,7 @@ import pandas as pd
 import random
 import numpy as np
 import math
+import pickle
 
 error_file_template = Template("""1  5
 #            rho             alpha             tau           x         y
@@ -179,10 +180,23 @@ def write_temsim_coordinates(df, file_out):
         rows = df[['x', 'y', 'z', 'phi', 'theta', 'psi']]
         rows.to_csv(f, header=False, sep='\t', index=False)
 
+def save_random_state(filename):
+    random_state = np.random.get_state()
+    pickle.dump(random_state, open(filename, "wb"))
+
+def load_random_state(filename):
+    random_state = pickle.load( open( filename , "rb" ) )
+    np.random.set_state(random_state)
 
 def main(outp_dir, angles_star, n_frames,
          simulate_drift, dose, voxelsize,
-         struct, filtered_maps_dir, max):
+         struct, filtered_maps_dir, max, rand):
+
+    if rand is not None:
+        if os.path.isfile(rand):
+            load_random_state(rand)
+        else:
+            save_random_state(rand)
 
     star_file = angles_star
     BASE_DIR = outp_dir
@@ -355,6 +369,9 @@ if __name__ == '__main__':
                         help='MRC file that will be used as structural noise')
     parser.add_argument('--voxelsize', type=float, default=1.0,
                         help='Voxel size of the input particle map')
+    parser.add_argument('--rand', type=str, default=None,
+                        help='Input/Output random state file. If file already exisits, the random seed for numpy is set. '
+                             'If file does not exist, it is created and the random state of the simulation is saved.')
 
     args = parser.parse_args()
 
@@ -367,6 +384,7 @@ if __name__ == '__main__':
         struct=args.struct,
         filtered_maps_dir=args.fmaps,
         voxelsize=args.voxelsize,
-        max=args.max
+        max=args.max,
+        rand = args.rand
     )
 
