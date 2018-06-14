@@ -21,12 +21,10 @@ def damage_filter(k, N):
     """
     return np.exp(-N / (2 * (0.245 * np.power(k, -1.665) + 2.81)))
 
-def main(map_in, output_dir, voxel_size, dose, n_frames, use_phase_plate, factor):
+def main(map_in, output_dir, voxel_size, dose, n_frames, factor):
 
     # determine the electron dose at which we have to filter
     dose_per_frame = dose / n_frames
-    if use_phase_plate:
-        dose_per_frame /= 0.9
     dose_array = np.append(0, np.cumsum(np.repeat(dose_per_frame, n_frames-1)))
 
     print('Input map:', map_in)
@@ -88,8 +86,7 @@ if __name__ == '__main__':
                         help='Number of frames')
     parser.add_argument('--factor', type=float, default=1,
                         help='Reduce the intensity of the scattering potential by this factor')
-    parser.add_argument('--VPP', action='store_true', default=False,
-                        help='Use phase plate. Adds more radiation damage.')
+
 
     args = parser.parse_args()
 
@@ -98,5 +95,4 @@ if __name__ == '__main__':
          voxel_size=args.voxel_size,
          dose=args.dose,
          n_frames=args.n_frames,
-         use_phase_plate=args.VPP,
          factor=args.factor)
