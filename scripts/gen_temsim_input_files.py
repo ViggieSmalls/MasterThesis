@@ -234,9 +234,11 @@ def main(outp_dir, angles_star, n_frames,
             os.makedirs(OUTPUT_DIR, exist_ok=True)
 
             # select all rows and columns with this micrograph name
-            micrograph_df = ptcls_star_content.loc[ptcls_star_content['_rlnMicrographName'] == micrograph]
+            micrograph_df = ptcls_star_content.loc[ptcls_star_content['_rlnMicrographName'] == micrograph].copy()
             # change the micrograph name to match the future location of the simulated micrographs
             micrograph_df['_rlnMicrographName'] = os.path.join(BASE_DIR, basename + '.mrc')
+            micrograph_df['_rlnParticleId'] = range(len(output_particles_df), len(micrograph_df))
+
 
             # determine values for the simulation from the star file
             defocus = ( float(micrograph_df['_rlnDefocusU'].unique()) + float(micrograph_df['_rlnDefocusV'].unique()) ) / 2e4  # µm
