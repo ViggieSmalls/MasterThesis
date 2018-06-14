@@ -237,16 +237,19 @@ def main(outp_dir, angles_star, n_frames,
             micrograph_df = ptcls_star_content.loc[ptcls_star_content['_rlnMicrographName'] == micrograph].copy()
             # change the micrograph name to match the future location of the simulated micrographs
             micrograph_df['_rlnMicrographName'] = os.path.join(BASE_DIR, basename + '.mrc')
-            micrograph_df['_rlnParticleId'] = range(len(output_particles_df), len(micrograph_df))
+            micrograph_df['_rlnParticleId'] = range(len(output_particles_df), len(output_particles_df) + len(micrograph_df))
 
 
-            # determine values for the simulation from the star file
+            # read defocus value from star file
             defocus = ( float(micrograph_df['_rlnDefocusU'].unique()) + float(micrograph_df['_rlnDefocusV'].unique()) ) / 2e4  # µm
+            # read phase shift from star file.
+            # Decrease dose per frame because of loss of electrons through scattering by the phase plate
             if '_rlnPhaseShift' in micrograph_df.columns:
                 phase_shift = float(micrograph_df['_rlnPhaseShift'].unique())
                 dose_per_frame *= 0.9
             else:
                 phase_shift = 0
+            # read detector parameters from star file
             magnification = float(micrograph_df['_rlnMagnification'].unique())
             det_pixel_size = float(micrograph_df['_rlnDetectorPixelSize'].unique())
             pixel_size_image = det_pixel_size / magnification * 10000  # A/pix
