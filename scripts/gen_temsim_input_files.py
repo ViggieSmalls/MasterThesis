@@ -1,5 +1,3 @@
-#! /fs/mpib/pool-apps-rzg/system/SLES12/soft/python/anaconda/3/4.2.0/bin/python
-
 import os
 from string import Template
 import pandas as pd
