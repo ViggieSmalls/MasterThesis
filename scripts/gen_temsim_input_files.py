@@ -354,9 +354,9 @@ if __name__ == '__main__':
     parser.add_argument('-o', '--output_dir', type=str, default=os.path.abspath(os.curdir),
                         help='Output directory for the input files')
     parser.add_argument('--angles', type=str, default=None,
-                        help='Output directory for the input files')
+                        help='particles.star file with angles and coordinates')
     parser.add_argument('--fmaps', type=str, default=os.path.abspath(os.curdir),
-                        help='Output directory for the input files')
+                        help='Directory which contains filtered maps')
     parser.add_argument('--dose', type=float, default=30,
                         help='Total electron dose for micrograph, in e/A²')
     parser.add_argument('--frames', type=int, default=1,
