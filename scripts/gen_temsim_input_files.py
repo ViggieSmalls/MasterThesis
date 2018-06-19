@@ -364,19 +364,19 @@ if __name__ == '__main__':
     parser.add_argument('--angles', type=str, default=None,
                         help='particles.star file with angles and coordinates')
     parser.add_argument('--fmaps', type=str, default=os.path.abspath(os.curdir),
-                        help='Directory which contains filtered maps')
+                        help='Directory which contains filtered maps. Default is current directory')
     parser.add_argument('--dose', type=float, default=30,
-                        help='Total electron dose for micrograph, in e/A²')
+                        help='Total electron dose for micrograph, in e/A². Default = 30')
     parser.add_argument('--frames', type=int, default=1,
-                        help='Number of frames')
+                        help='Number of frames. Default = 1')
     parser.add_argument('--max', type=int, default=1,
-                        help='Maximum number of micrographs to create input files for.')
+                        help='Maximum number of micrographs to create input files for. Use a negative value to simulate all micrographs. Default = 1')
     parser.add_argument('--drift', action='store_true', default=False,
-                        help='Use this option to simulate drift as movement of the whole frame')
+                        help='Use this option to simulate drift as movement of the whole frame. Default is no drift')
     parser.add_argument("--struct", type=str, default=None,
                         help='MRC file that will be used as structural noise')
     parser.add_argument('--voxelsize', type=float, default=1.0,
-                        help='Voxel size of the input particle map in Angstrom')
+                        help='Voxel size of the input particle map in Angstrom. Default = 1')
     parser.add_argument('--rand', type=str, default=None,
                         help='Input/Output random state file. If file already exisits, the random seed for numpy is set. '
                              'If file does not exist, it is created and the random state of the simulation is saved.')
