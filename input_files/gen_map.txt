@@ -7,12 +7,12 @@ rand_seed = 0
 === particle proteasome ===
 
 source = pdb
-pdb_file_in               = 3j9i.pdb
+pdb_file_in = 3j9i.pdb
 add_hydrogen = no
-voxel_size = 0.1
+voxel_size = 0.05
 use_imag_pot = no
 famp = 0.1
-map_file_re_out = "filt_0.000.mrc"
+map_file_re_out = "map.mrc"
 
 === electronbeam ===
 
