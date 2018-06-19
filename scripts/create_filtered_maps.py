@@ -92,7 +92,7 @@ if __name__ == '__main__':
 
     main(map_in=args.input_map,
          output_dir=args.output_dir,
-         voxel_size=args.voxel_size,
+         voxel_size=args.voxelsize,
          dose=args.dose,
          n_frames=args.n_frames,
          factor=args.factor)
