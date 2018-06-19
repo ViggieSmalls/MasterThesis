@@ -353,7 +353,12 @@ def main(outp_dir, angles_star, n_frames,
 if __name__ == '__main__':
     import argparse
 
-    parser = argparse.ArgumentParser(description='Create TEM-Simulator input files from a relion _data.star file.')
+    parser = argparse.ArgumentParser(description="Create TEM-Simulator input files from a relion star file. "
+                                                 "Mandatory columns in the star file are: "
+                                                 "['_rlnCoordinateX', '_rlnCoordinateY', '_rlnAnglePsi', '_rlnAngleRot', "
+                                                 "_rlnAngleTilt', '_rlnMicrographName', '_rlnDefocusU', "
+                                                 "_rlnDefocusV', '_rlnPhaseShift', '_rlnMagnification', "
+                                                 "_rlnDetectorPixelSize']")
     parser.add_argument('-o', '--output_dir', type=str, default=os.path.abspath(os.curdir),
                         help='Output directory for the input files')
     parser.add_argument('--angles', type=str, default=None,
@@ -371,7 +376,7 @@ if __name__ == '__main__':
     parser.add_argument("--struct", type=str, default=None,
                         help='MRC file that will be used as structural noise')
     parser.add_argument('--voxelsize', type=float, default=1.0,
-                        help='Voxel size of the input particle map')
+                        help='Voxel size of the input particle map in Angstrom')
     parser.add_argument('--rand', type=str, default=None,
                         help='Input/Output random state file. If file already exisits, the random seed for numpy is set. '
                              'If file does not exist, it is created and the random state of the simulation is saved.')

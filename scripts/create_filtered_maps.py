@@ -78,7 +78,7 @@ if __name__ == '__main__':
     parser.add_argument('output_dir', type=str,
                         default=os.path.join(os.path.abspath(os.curdir), 'filtered_maps'),
                         help='Output directory for the input files')
-    parser.add_argument('--voxel_size', type=float, default=1.0,
+    parser.add_argument('--voxelsize', type=float, default=1.0,
                         help='Voxel size of the map in Angstrom')
     parser.add_argument('--dose', type=float, default=30,
                         help='Total electron dose for micrograph, in e/A²')
