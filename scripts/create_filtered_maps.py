@@ -82,7 +82,7 @@ if __name__ == '__main__':
                         help='Voxel size of the map in Angstrom')
     parser.add_argument('--dose', type=float, default=30,
                         help='Total electron dose for micrograph, in e/A²')
-    parser.add_argument('-nf','--n_frames', type=int, default=1,
+    parser.add_argument('--nf', type=int, default=1,
                         help='Number of frames')
     parser.add_argument('--factor', type=float, default=1,
                         help='Reduce the intensity of the scattering potential by this factor')
@@ -94,5 +94,5 @@ if __name__ == '__main__':
          output_dir=args.output_dir,
          voxel_size=args.voxelsize,
          dose=args.dose,
-         n_frames=args.n_frames,
+         n_frames=args.nf,
          factor=args.factor)

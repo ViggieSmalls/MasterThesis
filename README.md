@@ -59,7 +59,7 @@ Let's create filtered maps, matching the VPP with defocus data (EMPIAR-10078), w
 due to the fine sampling. 
 
     cd ..
-    python scripts/create_filtered_maps.py input_files/map.mrc factor1_maps --voxelsize 1 --dose 39 -nf 24 --factor 1
+    python scripts/create_filtered_maps.py input_files/map.mrc factor1_maps --voxelsize 1 --dose 39 --nf 24 --factor 1
     # type 'y' or 'yes' to continue
     
 This will create the `factor1_maps` directory and write the filtered maps inside it.
