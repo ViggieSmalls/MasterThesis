@@ -359,7 +359,7 @@ if __name__ == '__main__':
                                                  "_rlnAngleTilt', '_rlnMicrographName', '_rlnDefocusU', "
                                                  "_rlnDefocusV', '_rlnPhaseShift', '_rlnMagnification', "
                                                  "_rlnDetectorPixelSize']")
-    parser.add_argument('-o', '--output_dir', type=str, default=os.path.abspath(os.curdir),
+    parser.add_argument('--o', type=str, default=os.path.abspath(os.curdir),
                         help='Output directory for the input files')
     parser.add_argument('--angles', type=str, default=None,
                         help='particles.star file with angles and coordinates')
@@ -378,13 +378,13 @@ if __name__ == '__main__':
     parser.add_argument('--voxelsize', type=float, default=1.0,
                         help='Voxel size of the input particle map in Angstrom. Default = 1')
     parser.add_argument('--rand', type=str, default=None,
-                        help='Input/Output random state file. If file already exisits, the random seed for numpy is set. '
+                        help='Input/Output random state file. If file already exists, the random seed for numpy is set. '
                              'If file does not exist, it is created and the random state of the simulation is saved.')
 
     args = parser.parse_args()
 
     main(
-        outp_dir=args.output_dir,
+        outp_dir=args.o,
         angles_star=args.angles,
         n_frames=args.frames,
         simulate_drift=args.drift,
