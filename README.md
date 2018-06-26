@@ -1,6 +1,4 @@
-# Tools for generating TEM-Simulator input files
-
-## Tutorial
+# Tutorial for simulating micrographs with TEM-Simulator
 
 #### Requirements
 
@@ -13,7 +11,7 @@ Python libraries:
     matplotlib
     mrcfile 
 
-### 1. Download and compile TEM-Simulator
+## 1. Download and compile TEM-Simulator
 
     git clone https://github.com/ViggieSmalls/TEM-Simulator
     cd TEM-Simulator
@@ -22,7 +20,7 @@ Python libraries:
     # set a variable to the path of the executable, we will need it later 
     TEM-Simulator=$PWD/TEM-Simulator
 
-### 2. Create input map
+## 2. Create input map
 
 Download the scripts and example input files for TEM-Simulator  
     
@@ -50,7 +48,7 @@ Now change the directory to the input file and launch TEM-Simulator with `gen_ma
     
 This should produce the log file and the output map.
     
-### 3. Apply the *damage filter* on the input map
+## 3. Apply the *damage filter* on the input map
 
 A script for creating damage filtered maps for a dose fractionated series can be found in `scripts`. 
 `create_filtered_maps.py` takes a scattering potential map as input and generates filtered maps, based on the dose 
@@ -71,7 +69,7 @@ This will create the `factor1_maps` directory and write the filtered maps inside
     filt_11.375.mrc  filt_16.250.mrc  filt_19.500.mrc  filt_24.375.mrc  filt_29.250.mrc  filt_3.250.mrc   filt_37.375.mrc  filt_8.125.mrc
     filt_13.000.mrc  filt_1.625.mrc   filt_21.125.mrc  filt_26.000.mrc  filt_30.875.mrc  filt_34.125.mrc  filt_4.875.mrc   filt_9.750.mrc
 
-### 4. Simulate micrograps
+## 4. Simulate micrograps
 
 In order to simulate a dose fractionated series, we need to simulate one frame at a time, since we use 
 different input maps for every frame because of the applied damage filter. Most of the parameters remain the same for all 
