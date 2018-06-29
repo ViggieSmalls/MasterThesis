@@ -11,7 +11,7 @@ Python libraries:
     matplotlib
     mrcfile 
 
-Best thing you can do is install (Anaconda)[https://www.anaconda.com/download/] for Python 3 and install mrcfile with
+Best thing you can do is install [Anaconda](https://www.anaconda.com/download/) for Python 3 and install mrcfile with
 
     pip install mrcfile
 
