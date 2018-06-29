@@ -171,6 +171,10 @@ This method saves you from providing different random noise maps for each microg
 
     python scripts/make_noise.py 100 --shape 300 400
     python scripts/gen_temsim_input_files.py [...options...] --struct flat_noise.mrc
+
+Note that the generated MRC file is padded with zeros. This is because whenever you provide a map as input for TEM-Simulator,
+it first subtracts the average of the outer pixels of the volume from the entire map. This is a strongly simplified way to account for 
+dislocation of water molecules.
     
 Tip: you can also overlap the particles with random noise maps generated this way, e.g. to simulate radiation damage.
     
@@ -181,3 +185,14 @@ frame that are used as input for TEM-Simulator.
 It also crates a `drift.txt` file with all geometry errors. 
 
     python scripts/gen_temsim_input_files.py [...options...] --drift
+
+
+## Notes
+
+1. If the column `_rlnPhaseShift` exists in the star file, then the electron dose is reduced by 10%, because of scattering 
+of the electrons by the phase plate. It has the same effect as reducing the amplitude of the wave function (TEM-Simulator) by 
+the square root of 0.9. This was not implemented directly in TEM-Simulator.
+
+2. TEM-Simulator uses a CCD detector. As long as you use a MTF of 1 and DQE of 1, the results are similar with a 
+direct electron detector described in _Vulovic et al. (2015) - Image formation modelling in cryo-electron microscopy_.
+Alternatively you can simulate noise free maps and add the shot noise with another program.
