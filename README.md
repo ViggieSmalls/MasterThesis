@@ -155,3 +155,25 @@ A new star file can be created e.g. with one of the following commands:
     
 Once you have a valid star file you can continue with the simulation as described earlier.
 
+## 5. Additional options
+
+### Add structural noise
+
+`gen_temsim_input_files.py` has the option `--struct` where you can specify an MRC file to use as structural noise. 
+It uses the option implemented in TEM-Simulator `randomize_particle = yes` that takes each pixel value *x* of an 
+input map and converts it to a random variable between *-x* and *x* before 'placing' it inside the specimen.
+
+This method saves you from providing different random noise maps for each micrograph. Usage example:
+
+    python scripts/make_noise.py 100 --shape 300 400
+    python scripts/gen_temsim_input_files.py [...options...] --struct flat_noise.mrc
+    
+Tip: you can also overlap the particles with random noise maps generated this way, e.g. to simulate radiation damage.
+    
+### Add drift
+
+Adds drift as an entire shift of the frame. This generates additional geometry error files for each 
+frame that are used as input for TEM-Simulator.
+It also crates a `drift.txt` file with all geometry errors. 
+
+    python scripts/gen_temsim_input_files.py [...options...] --drift

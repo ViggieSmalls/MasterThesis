@@ -16,7 +16,7 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='Create an mrc file with a constant value specified by the provided argument and padded with zeros.')
     parser.add_argument('x', type=int, help='Noise level')
-    parser.add_argument('--shape', type=int, nargs=2, default=(5200,5200),  #FIXME check the default range for relion
+    parser.add_argument('--shape', type=int, nargs=2, default=(5200,5200),
                         help='Shape of the output mrc file (no borders). (default = 5200 x 5200)')
     args = parser.parse_args()
     main(args)
