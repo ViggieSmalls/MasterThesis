@@ -38,3 +38,27 @@ By default the results are written to `profiles.csv`.
 #### Example:
 
     python radial_profile.py *.mrc
+    
+## `make_noise.py`
+
+Create a MRC file with specified pixel value and padded with zeros to use as input for noise simulations.
+
+#### Example:
+
+    python make_noise.py 100 --shape 500 500
+    
+## `shot.py`
+
+Create a screen shot (JPG/PNG/...) of an MRC file.
+
+#### Example:
+
+    python shot.py input.mrc output.jpg
+    
+## `create_subset.py`
+
+Create a screen shot (JPG/PNG/...) of an MRC file.
+
+#### Example:
+
+    python create_subset.py -i input.star -o output.star -n 10000
