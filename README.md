@@ -11,6 +11,10 @@ Python libraries:
     matplotlib
     mrcfile 
 
+Best thing you can do is install (Anaconda)[https://www.anaconda.com/download/] for Python 3 and install mrcfile with
+
+    pip install mrcfile
+
 ## 1. Download and compile TEM-Simulator
 
     git clone https://github.com/ViggieSmalls/TEM-Simulator
