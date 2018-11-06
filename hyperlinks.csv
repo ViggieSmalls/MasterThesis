@@ -1,0 +1,33 @@
+type,title,href,tags
+book,High Energy Electron Diffraction and Microscopy,https://books.google.de/books?id=pcMRDAAAQBAJ&pg=PA8&lpg=PA8&dq=isolated+atom+superposition+approximation&source=bl&ots=xOnegX9d_X&sig=kY1os9pd6KaHgNfgDRlfwPydWmo&hl=de&sa=X&ved=0ahUKEwi05pXI8Y3XAhWIcBoKHceQAiAQ6AEIJzAA#v=onepage&q=isolated%20atom%20superposition%20approximation&f=false,"kinematic scattering, isolated atom superposition approximation (IASA),"
+article,"Electron atomic scattering factors, Debye-Waller factors and the optical potential for high-energy electron diffraction",https://www.researchgate.net/publication/7682537_Electron_atomic_scattering_factors_Debye-Waller_factors_and_the_optical_potential_for_high-energy_electron_diffraction,"electron waves, scattering factors"
+article,Image formation modeling in cryo-electron microscopy,http://www.sciencedirect.com/science/article/pii/S1047847713001226?via%3Dihub#s0180,"phantom data, multislice"
+suplementary,Image formation modeling in cryo-electron microscopy,https://ars.els-cdn.com/content/image/1-s2.0-S1047847713001226-mmc1.pdf,poisson bolzman
+"lecture, video",Transmission Electron Microscopy Skills,https://nanohub.org/resources/3777,video 
+"lecture, video",Gran Johnson videos,http://cryo-em-course.caltech.edu/videos,"video, fourier transform, electron wave"
+book,Structural Biology Using Electrons and X-rays,http://www.sciencedirect.com/science/book/9780123705815,water 
+opac,The structure and properties of water,https://opac.ub.tum.de/InfoGuideClient.tumsis/singleHit.do?methodToCall=showHit&curPos=3&identifier=-1_FT_9575521,"book, water"
+website,Water structure and science,http://www1.lsbu.ac.uk/water/amorphous_ice.html,"water, vitreous water, supercooled water"
+thesis,Modeling of Image Formation in Cryo-Electron Microscopy,https://repository.tudelft.nl/islandora/object/uuid%3A65d91c44-61d4-4074-9ebf-b5452882180f,"vulovic, fei, inSilicoTEM"
+article,Accurate modeling of single-particle cryo-EM images quantitates the benefits expected from using Zernike phase contrast.,https://www.ncbi.nlm.nih.gov/pubmed/21463690,"zernike phase plate, phantom data"
+book,Advanced Computing in Electron Microscopy,https://www.springer.com/de/book/9781441965325,data simulation
+article,Observations on the behavior of vitreous ice at ∼82 and∼12 K,http://www.sciencedirect.com.eaccess.ub.tum.de/science/article/pii/S1047847705002893,vitreous ice
+website,Jensen Lab,https://jensenlab.caltech.edu/publications/,research
+website,Contrast Transfer function,http://www.ceos-gmbh.de/English/FAQ/informationslimit.html,ctf
+article,Cited in TEM-Simulator,http://iopscience.iop.org/article/10.1088/0266-5611/24/1/013001/pdf,wave function theory
+book,"Three dimensional electron microscopy of molecular assemblies, Frank",http://www.oxfordscholarship.com/view/10.1093/acprof:oso/9780195182187.001.0001/acprof-9780195182187-chapter-2,ctf
+website,Fourier transformation with openCV,https://docs.opencv.org/3.0-beta/doc/py_tutorials/py_imgproc/py_transforms/py_fourier_transform/py_fourier_transform.html,"python, fourier transform, opencv"
+website,Spatial Frequency Domain,https://www.cs.auckland.ac.nz/courses/compsci773s1c/lectures/ImageProcessing-html/topic1.htm,"fourier transform, spacial frequency"
+website,Fourier transformation Theory,https://homepages.inf.ed.ac.uk/rbf/HIPR2/fourier.htm,fourier transform
+website,Basic image processing,https://www.biophys.mpg.de/fileadmin/user_upload/lectures/EM/basicImProc-210514-modified.pdf,simple image processing effects
+book,Tansmission Electron Microscopy - Physics of image formation,https://link.springer.com/content/pdf/10.1007%2F978-0-387-40093-8.pdf,
+book,Transmission Electron Microscopy - Basics,https://link.springer.com/book/10.1007/978-0-387-76501-3,
+website,Physics forum - Electron Relativistic Wavelength,https://www.physicsforums.com/threads/relativistic-wavelength-of-electron-in-transmission-electron-microscop.736897/,relativistic wavelength electron
+website,,https://wiki.sei.cmu.edu/confluence/display/c/MSC30-C.+Do+not+use+the+rand%28%29+function+for+generating+pseudorandom+numbers,"rand(), C, random()"
+,Smoothing a 1Dsignal,http://scipy-cookbook.readthedocs.io/items/SignalSmooth.html,
+,Smoothing a 1Dsignal,https://stackoverflow.com/questions/4624970/finding-local-maxima-minima-with-numpy-in-a-1d-numpy-array,
+,Curve fit,https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve_fit.html,
+,Poisson verteilung,http://www.poissonverteilung.de/poissonverteilung.html,poisson
+,Behaviour of the FSCs and their meaning,http://blake.bcm.edu/emanwiki/EMAN2/FAQ/FSC,"FSC, eman2"
+,,https://www.imagescience.de/fsc.html,"fsc, imagic, van Heel"
+,,https://en.wikibooks.org/wiki/Three_Dimensional_Electron_Microscopy/3D_Reconstruction,"basics, please edit"
